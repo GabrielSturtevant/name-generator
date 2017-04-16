@@ -6,6 +6,8 @@ import sys
 
 first_names = open('first-names')
 last_names = open('last-names')
+email_domains = open('emailDomains')
+
 iterations = 1
 first = False
 last = False
@@ -29,6 +31,8 @@ flines = first_names.readlines()
 fsize = len(flines)
 llines = last_names.readlines()
 lsize = len(llines)
+elines = email_domains.readlines()
+esize = len(elines)
 
 for i in range(iterations):
     first_name = flines[random.randint(0, fsize)].strip('\n')
@@ -44,11 +48,12 @@ for i in range(iterations):
         if last:
             to_print += '{} '.format(last_name)
         if email:
+            domain = elines[random.randint(0, esize)].strip('\n')
             temp = to_print.split(' ')
             if not first and not last:
-                to_print += '{}.{}@gmail.com '.format(first_name, last_name)
+                to_print += '{}.{}@{}'.format(first_name, last_name, domain)
             elif temp[1] != '':
-                to_print += '{}.{}@gmail.com '.format(first_name, last_name)
+                to_print += '{}.{}@{}'.format(first_name, last_name, domain)
             else:
-                to_print += '{}@gmail.com'.format(temp[0])
+                to_print += '{}@{}'.format(temp[0], domain)
     print(to_print)
