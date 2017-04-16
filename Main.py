@@ -12,10 +12,11 @@ iterations = 1
 first = False
 last = False
 email = False
+delim = False
 try:
-    opts, args = getopt.getopt(sys.argv[1:],"flen:")
+    opts, args = getopt.getopt(sys.argv[1:],"fledn:")
 except getopt.GetoptError:
-    print('names.py -f -l -e -n <number of names to print>')
+    print('names.py -f -l -e -d -n <number of names to print>')
     sys.exit(2)
 for opt, arg in opts:
     if opt == '-f':
@@ -24,6 +25,8 @@ for opt, arg in opts:
         last = True
     elif opt == '-e':
         email = True
+    elif opt == '-d':
+        delim = True
     elif opt == '-n':
         iterations = int(arg)
 
@@ -56,4 +59,6 @@ for i in range(iterations):
                 to_print += '{}.{}@{}'.format(first_name, last_name, domain)
             else:
                 to_print += '{}@{}'.format(temp[0], domain)
+    if delim:
+        to_print = to_print.replace(' ', ',')
     print(to_print)
