@@ -38,8 +38,8 @@ elines = email_domains.readlines()
 esize = len(elines)
 
 for i in range(iterations):
-    first_name = flines[random.randint(0, fsize)].strip('\n')
-    last_name = llines[random.randint(0, lsize)].strip('\n')
+    first_name = flines[random.randint(0, fsize - 1)].strip('\n')
+    last_name = llines[random.randint(0, lsize - 1)].strip('\n')
 
     to_print = ""
 
@@ -51,7 +51,7 @@ for i in range(iterations):
         if last:
             to_print += '{} '.format(last_name)
         if email:
-            domain = elines[random.randint(0, esize)].strip('\n')
+            domain = elines[random.randint(0, esize - 1)].strip('\n')
             temp = to_print.split(' ')
             if not first and not last:
                 to_print += '{}.{}@{}'.format(first_name, last_name, domain)
